@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
-    //
+    protected $table = ['name'];
+
+    public function recipes()
+    {
+        return $this->belongsToMany(Recipe::class)->withPivot('amount');
+    }
 }

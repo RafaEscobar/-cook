@@ -19,7 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'date_birth',
         'email',
+        'biography',
         'password',
     ];
 
@@ -44,5 +47,67 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Personas que sigen al usuario
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'followed_id');
+    }
+
+    // Personas a las que el usuario sigue
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'followed_id', 'follower_id');
+    }
+
+    public function scoreUsers()
+    {
+        return $this->belongsToMany(Recipe::class, 'user_scores');
+    }
+
+    public function commentRecipes()
+    {
+        return $this->belongsToMany(Recipe::class, 'recipe_comments');
+    }
+
+    public function dailyMenus()
+    {
+        return $this->hasMany(DailyMenu::class);
+    }
+
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
+    }
+
+    public function shareRecipes()
+    {
+        return $this->belongsToMany(Recipe::class, 'recipe_shares');
+    }
+
+    public function saveRecipes()
+    {
+        return $this->belongsToMany(Recipe::class, 'recipe_saves');
+    }
+
+    public function sharePosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_shares');
+    }
+
+    public function commentPosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_comments');
+    }
+
+    public function savePosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_save');
+    }
+
+    public function topUsers()
+    {
+        return $this->hasMany(TopUser::class);
     }
 }
