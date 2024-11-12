@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('top_users', function (Blueprint $table) {
             $table->id();
-            $table->double('amount_recipes');
-            $table->double('amount_followers');
+            $table->integer('amount_recipes');
+            $table->integer('amount_followers');
             $table->double('average_recipe');
             $table->timestamps();
         });

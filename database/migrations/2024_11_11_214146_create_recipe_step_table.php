@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('recipe_step', function (Blueprint $table) {
-            $table->foreignId('recipe_id')->constrained('recipes')->onDelete();
-            $table->foreignId('step_id')->constrained('steps')->onDelete();
+            $table->foreignId('recipe_id')->constrained('recipes')->onDelete('cascade');
+            $table->foreignId('step_id')->constrained('steps')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('recipe_comments', function (Blueprint $table) {
             $table->id();
             $table->text('text');
-            $table->foreignId('user_id')->constrained('users')->onDelete();
-            $table->foreignId('recipe_id')->constrained('recipes')->onDelete();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('recipe_id')->constrained('recipes')->onDelete('cascade');
             $table->timestamps();
         });
     }

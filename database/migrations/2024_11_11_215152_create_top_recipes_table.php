@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('top_recipes', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('amount_comments');
-            $table->tinyInteger('time_Saved');
-            $table->tinyInteger('time_shared');
-            $table->foreignId('recipe_id')->constrained('recipes')->onDelete();
+            $table->integer('amount_comments');
+            $table->integer('time_Saved');
+            $table->integer('time_shared');
+            $table->foreignId('recipe_id')->constrained('recipes')->onDelete('cascade');
             $table->timestamps();
         });
     }

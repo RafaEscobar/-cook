@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->foreignId('user_id')->constrained('users')->onDelete();
-            $table->foreignId('recipe_category_id')->constrained('recipe_categories')->onDelete();
+            $table->string('title', 160);
+            $table->string('description', 230);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('recipe_category_id')->constrained('recipe_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

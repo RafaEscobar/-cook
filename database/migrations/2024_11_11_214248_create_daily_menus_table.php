@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->enum('meal_time', ['breakfast', 'lunch', 'dinner', 'general']);
-            $table->foreignId('user_id')->constrained('users')->onDelete();
-            $table->foreignId('recipe_id')->constrained('recipes')->onDelete();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('recipe_id')->constrained('recipes')->onDelete('cascade');
             $table->timestamps();
         });
     }
