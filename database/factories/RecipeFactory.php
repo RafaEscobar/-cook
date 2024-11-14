@@ -17,7 +17,10 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->sentence(3, true),
+            'description' => fake()->sentence(5, true),
+            'user_id' => fake()->numberBetween(1, 10),
+            'recipe_category_id' => fake()->numberBetween(1, 10)
         ];
     }
 }

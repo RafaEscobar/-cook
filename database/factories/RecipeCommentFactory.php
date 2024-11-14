@@ -17,7 +17,9 @@ class RecipeCommentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'text' => fake()->sentence(5, true),
+            'user_id' => fake()->numberBetween(1, 10),
+            'recipe_id' => fake()->numberBetween(1, 10)
         ];
     }
 }
