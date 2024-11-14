@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Recipe extends Model
 {
-    protected $table = [
+    use HasFactory;
+    protected $fillable = [
         'title',
         'description',
         'user_id',

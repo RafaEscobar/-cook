@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date_birth');
             $table->text('biography');
             $table->string('email')->unique();
-            $table->string('password', 34);
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
