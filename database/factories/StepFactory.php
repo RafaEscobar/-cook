@@ -17,7 +17,8 @@ class StepFactory extends Factory
     public function definition(): array
     {
         return [
-            'description' => fake()->sentence(5, true)
+            'description' => fake()->sentence(5, true),
+            'recipe_id' => fake()->numberBetween(1, 10)
         ];
     }
 }
