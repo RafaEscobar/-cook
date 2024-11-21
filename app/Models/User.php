@@ -106,6 +106,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class, 'post_save');
     }
 
+    public function likePosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_share');
+    }
+
     public function topUsers()
     {
         return $this->hasMany(TopUser::class);
