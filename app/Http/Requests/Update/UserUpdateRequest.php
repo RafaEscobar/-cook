@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Request\Update;
+namespace App\Http\Requests\Update;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,7 +31,7 @@ class UserUpdateRequest extends FormRequest
                 'biography' => 'max:300',
                 'password' => 'required|max:16|min:8',
             ];
-        } else if ($method == 'POST') {
+        } else if ($method == 'PATCH') {
             return [
                 'name' => 'sometimes|required|max:60|min:4',
                 'last_name' => 'sometimes|required|max:200|min:4',
