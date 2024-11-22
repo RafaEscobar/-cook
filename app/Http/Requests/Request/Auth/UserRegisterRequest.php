@@ -27,7 +27,7 @@ class UserRegisterRequest extends FormRequest
             'date_birth' => 'required|date',
             'email' => 'required|email|max:120',
             'biography' => 'max:300',
-            'password' => 'required|max:16|min:8|password',
+            'password' => 'required|max:16|min:8',
         ];
     }
 
@@ -49,7 +49,6 @@ class UserRegisterRequest extends FormRequest
             'password.required' => 'La contraseña es obligatoria',
             'password.max' => 'La contraseña debe tener máximo 16 caracteres',
             'password.min' => 'La contraseña debe tener mínimo 8 caracteres',
-            'password.password' => 'La contraseña no tiene un formato válido',
         ];
     }
 }
