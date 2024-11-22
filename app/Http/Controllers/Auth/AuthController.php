@@ -46,13 +46,4 @@ class AuthController extends Controller
             return response()->json(['message' => $th->getMessage()], 500);
         }
     }
-
-    public function getUser()
-    {
-        try {
-            return new UserResource(Auth::user());
-        } catch (\Throwable $th) {
-            return response()->json(['message' => $th->getMessage()], 500);
-        }
-    }
 }

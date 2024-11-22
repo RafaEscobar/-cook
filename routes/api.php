@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/get-user', [AuthController::class, 'getUser']);
     Route::apiResource('users', UserController::class);
 });
 
