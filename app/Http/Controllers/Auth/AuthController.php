@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Request\Auth\UserLoginRequest;
-use App\Http\Requests\Request\Auth\UserRegisterRequest;
+use App\Http\Requests\Auth\UserLoginRequest;
+use App\Http\Requests\Auth\UserRegisterRequest;
 use App\Http\Resources\Resource\Auth\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
