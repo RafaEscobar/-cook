@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Resource\Auth;
+namespace App\Http\Resources\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
-
     protected $includeToken;
 
     public function __construct($resource, $token = null)

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('/users', UserController::class)->only(['update', 'show', 'destroy']);
-    Route::apiResource('/posts', PostController::class);
+    Route::apiResource('/posts', PostController::class)->only(['store', 'update', 'show', 'destroy']);
 });
 
 

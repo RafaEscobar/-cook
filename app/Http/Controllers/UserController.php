@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Update\UserUpdateRequest;
-use App\Http\Resources\Resource\Auth\UserResource;
+use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
 
 class UserController extends Controller
