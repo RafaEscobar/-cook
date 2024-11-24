@@ -38,4 +38,20 @@ class RecipeUpdateRequest extends FormRequest
             ];
         }
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'El nombre de la receta es obligatorio.',
+            'title.string' => 'El nombre de la receta es debe ser alfanumérico.',
+            'title.max' => 'El nombre de la receta es debe ser más corto.',
+            'title.min' => 'El nombre de la receta es muy corto.',
+            'description' => 'La descripción de la receta es obligatoria.',
+            'description' => 'La descripción de la receta debe ser más corta.',
+            'user_id.required' => 'Formato de usuario inválido.',
+            'user_id.integer' => 'El usuario es obligatorio.',
+            'recipe_category_id' => 'La categoría es obligatoria.',
+            'recipe_category_id' => 'Formato de receta inválido.'
+        ];
+    }
 }
