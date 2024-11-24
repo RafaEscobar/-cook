@@ -36,4 +36,18 @@ class PostUpdateRequest extends FormRequest
             ];
         }
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'El título del post es obligatorio.',
+            'title.string' => 'El título debe ser alfanumérico.',
+            'title.max' => 'El título debe ser más corto.',
+            'title.min' => 'El título es muy corto.',
+            'text.required' => 'El contenido de la entrada es obligatoria',
+            'text.string' => 'El contenido debe ser alfanumérico',
+            'post_category_id.integer' => 'Formato incorrecto de categoría',
+            'post_category_id.required' => 'La categoría es obligatoria',
+        ];
+    }
 }
