@@ -11,7 +11,7 @@ class RecipeStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class RecipeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:100|min:4',
+            'description' => 'required|max:210',
+            'user_id' => 'required|integer',
+            'recipe_category_id' => 'required|integer'
         ];
     }
 }

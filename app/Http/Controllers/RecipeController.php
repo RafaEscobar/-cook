@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Store\RecipeStoreRequest;
+use App\Http\Requests\Update\RecipeUpdateRequest;
+use App\Http\Resources\Collections\RecipeCollection;
+use App\Http\Resources\Resources\RecipeResource;
 use App\Models\Recipe;
-use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
@@ -11,42 +14,46 @@ class RecipeController extends Controller
     {
         try {
             $recipes = Recipe::all();
+            return new RecipeCollection($recipes);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
-    public function store()
+    public function store(RecipeStoreRequest $request)
     {
         try {
-            //code...
+            $recipe = Recipe::create($request->all());
+            return new RecipeResource($recipe);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
-    public function update()
+    public function update(RecipeUpdateRequest $request, Recipe $recipe)
     {
         try {
-            //code...
+            $recipe->update($request->all());
+            return new RecipeResource($recipe);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
-    public function show()
+    public function show(Recipe $recipe)
     {
         try {
-            //code...
+            return new RecipeResource($recipe);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
-    public function destroy()
+    public function destroy(Recipe $recipe)
     {
         try {
-            //code...
+            $recipe->delete();
+            return response()->json(['message' => 'Receta eliminada'], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }

@@ -11,7 +11,7 @@ class RecipeUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,21 @@ class RecipeUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                'title' => 'required|string|max:100|min:4',
+                'description' => 'required|max:210',
+                'user_id' => 'required|integer',
+                'recipe_category_id' => 'required|integer'
+            ];
+        } else if ($method == 'PATCH') {
+            return [
+                'title' => 'sometimes|required|string|max:100|min:4',
+                'description' => 'sometimes|required|max:210',
+                'user_id' => 'sometimes|required|integer',
+                'recipe_category_id' => 'sometimes|required|integer'
+            ];
+        }
     }
 }

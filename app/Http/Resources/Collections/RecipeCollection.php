@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collections;
 
+use App\Http\Resources\Resources\RecipeResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -14,6 +15,11 @@ class RecipeCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'data' => RecipeResource::collection($this->collection),
+            'meta' => [
+                'total' => $this->collection->count()
+            ]
+        ];
     }
 }
