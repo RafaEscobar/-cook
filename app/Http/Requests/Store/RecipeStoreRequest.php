@@ -38,10 +38,10 @@ class RecipeStoreRequest extends FormRequest
             'title.min' => 'El nombre de la receta es muy corto.',
             'description' => 'La descripción de la receta es obligatoria.',
             'description' => 'La descripción de la receta debe ser más corta.',
-            'user_id.required' => 'Formato de usuario inválido.',
-            'user_id.integer' => 'El usuario es obligatorio.',
-            'recipe_category_id' => 'La categoría es obligatoria.',
-            'recipe_category_id' => 'Formato de receta inválido.'
+            'user_id.required' => 'El usuario es obligatorio.',
+            'user_id.integer' => 'Formato de usuario inválido.',
+            'recipe_category_id.required' => 'La categoría es obligatoria.',
+            'recipe_category_id.integer' => 'Formato de receta inválido.'
         ];
     }
 }
