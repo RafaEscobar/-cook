@@ -11,7 +11,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'text',
-        'post_category'
+        'post_category_id'
     ];
 
     public function shareByUsers()
