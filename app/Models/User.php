@@ -106,7 +106,7 @@ class User extends Authenticatable
 
     public function savePosts()
     {
-        return $this->belongsToMany(Post::class, 'post_save');
+        return $this->belongsToMany(Post::class, 'post_saves');
     }
 
     public function likePosts()
@@ -139,5 +139,10 @@ class User extends Authenticatable
         $userToUnfollow = User::where('id', $id)->first();
         if (!$this->isFollowing($userToUnfollow)) throw new Error('No sigues a este usuario');
         $this->followedUsers()->detach($userToUnfollow);
+    }
+
+    public function isPostSaved(Post $post)
+    {
+        return $this->savePosts()->where('post_id', $post->id)->exists();
     }
 }

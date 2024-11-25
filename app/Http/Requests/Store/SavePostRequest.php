@@ -4,7 +4,7 @@ namespace App\Http\Requests\Store;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FollowerRequest extends FormRequest
+class SavePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,15 @@ class FollowerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'follower_id' => 'required|integer',
-            'followed_id' => 'required|integer'
+            'post_id' => 'required|integer',
         ];
     }
 
     public function messages()
     {
         return [
-            'follower_id.required' => 'El seguidor es obligatorio.',
-            'follower_id.integer' => 'El formato del seguidor es incorrecto.',
-            'followed_id.required' => 'El usuario seguido es obligatorio.',
-            'followed_id.integer' => 'El formato del usuario seguido es incorrecto.'
+            'post_id.required' => 'El post es obligatorio.',
+            'post_id.integer' => 'El formato del post es incorrecto.'
         ];
     }
 }
