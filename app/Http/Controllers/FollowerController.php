@@ -34,11 +34,23 @@ class FollowerController extends Controller
         }
     }
 
+    //* Usuarios que me siguen (SEGUIDORES)
     public function followers()
     {
         try {
             $user = User::where('id', Auth::user()->id)->first();
             return new FollowerCollection($user->followers);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
+    }
+
+    //* Usuarios que yo sigo (SEGUIDOS)
+    public function usersFollowed()
+    {
+        try {
+            $user = User::where('id', Auth::user()->id)->first();
+            return new FollowerCollection($user->followedUsers);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }

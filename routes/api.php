@@ -17,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('/user/follow', 'follow');
         Route::post('/user/unfollow', 'unfollow');
         Route::get('/user/followers', 'followers');
+        Route::get('/user/followed', 'usersFollowed');
     });
 });
 

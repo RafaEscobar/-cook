@@ -52,13 +52,13 @@ class User extends Authenticatable
         ];
     }
 
-    // Personas que sigen al usuario
+    //! Consulta: usuarios que sigo
     public function followedUsers()
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'followed_id');
     }
 
-    // Personas a las que el usuario sigue
+    //! Consulta: usuarios que me siguen
     public function followers()
     {
         return $this->belongsToMany(User::class, 'followers', 'followed_id', 'follower_id');
