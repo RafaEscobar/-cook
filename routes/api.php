@@ -24,8 +24,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/user/followers', 'followers');
         Route::get('/user/followed', 'usersFollowed');
     });
-    Route::post('/user/save-post', [PostSavedController::class, 'savePost']);
-    Route::post('/user/delete-post', [PostSavedController::class, 'deletePost']);
+    Route::apiResource('/user/save-post', PostSavedController::class)->only(['store', 'destroy', 'index']);
     Route::post('/user/comment-post', [PostCommentRequest::class, 'commentPost']);
     Route::post('/user/delete-comment', [PostCommentRequest::class, 'deleteComment']);
     Route::post('/user/share-post', [PostShareController::class, 'sharePost']);
