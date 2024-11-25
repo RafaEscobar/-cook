@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Store\PostActionRequest;
+use App\Http\Resources\Collections\PostSavedCollection;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +13,7 @@ class PostSavedController extends Controller
     {
         try {
             $posts = Auth::user()->savePosts;
+            return new PostSavedCollection($posts);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
