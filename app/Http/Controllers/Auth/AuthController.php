@@ -19,10 +19,10 @@ class AuthController extends Controller
                 $token = $user->createToken('auth_token')->plainTextToken;
                 return new UserResource($user, $token);
             } else {
-                return response()->json(['message' => 'Credenciales incorrectas']);
+                return response()->json(['message' => 'Credenciales incorrectas'], 401);
             }
         } catch (\Throwable $th) {
-            return response()->json(['message' => $th->getMessage()], 401);
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 

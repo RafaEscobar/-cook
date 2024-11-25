@@ -17,7 +17,7 @@ class FollowerController extends Controller
         try {
             $user = User::where('id', $request->follower_id)->first();
             $user->follow($request->followed_id);
-            return response()->json(['message' => 'Ahora sigues a este usuario'], 200);
+            return response()->json(['message' => 'Ahora sigues a este usuario.'], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
@@ -30,7 +30,7 @@ class FollowerController extends Controller
             if (empty($request->followed_id)) throw new Error("Falta id de usuario seguido.");
             $user = User::where('id', Auth::user()->id)->first();
             $user->unfollow($request->followed_id);
-            return response()->json(['message' => 'Haz dejado de seguir a este usuario'], 200);
+            return response()->json(['message' => 'Has dejado de seguir a este usuario.'], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }

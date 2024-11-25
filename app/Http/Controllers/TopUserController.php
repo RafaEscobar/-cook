@@ -13,7 +13,7 @@ class TopUserController extends Controller
             $users = TopUser::all();
             return new UserCollection($users);
         } catch (\Throwable $th) {
-            return response()->json(['message' => $th->getMessage()]);
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 }

@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         try {
             $user->delete();
-            return response()->json(['message' => 'El usuario ha sido eliminado']);
+            return response()->json(['message' => 'El usuario ha sido eliminado'], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
