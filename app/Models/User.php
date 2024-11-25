@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Error;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,7 +53,7 @@ class User extends Authenticatable
     }
 
     // Personas que sigen al usuario
-    public function following()
+    public function followedUsers()
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'followed_id');
     }
@@ -115,5 +117,27 @@ class User extends Authenticatable
     public function topUsers()
     {
         return $this->hasMany(TopUser::class);
+    }
+
+    //* Metodo para seguir a otro usuario
+    public function follow($id)
+    {
+        $userToFollow = User::where('id', $id)->first();
+        if ($userToFollow->id == $this->id) throw new Error("No pudes seguir a este usuario");
+        if ($this->isFollowing($userToFollow)) throw new Error("Ya sigues a este usuario");
+        $this->followedUsers()->attach($userToFollow->id);
+    }
+
+    //* Metodo para saber si un usuario es seguido
+    public function isFollowing(User $user)
+    {
+        return $this->followedUsers()->where('followed_id', $user->id)->exists();
+    }
+
+    public function unfollow($id)
+    {
+        $userToUnfollow = User::where('id', $id)->first();
+        if (!$this->isFollowing($userToUnfollow)) throw new Error('No sigues a este usuario');
+        $this->followedUsers()->detach($userToUnfollow);
     }
 }
