@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowerController extends Controller
 {
+    //* Seguir
     public function follow(FollowerRequest $request)
     {
         try {
@@ -22,6 +23,7 @@ class FollowerController extends Controller
         }
     }
 
+    //* Dejar de seguir
     public function unfollow(Request $request)
     {
         try {
