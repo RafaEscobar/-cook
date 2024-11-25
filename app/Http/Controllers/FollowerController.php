@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Store\FollowerRequest;
+use App\Http\Resources\Collections\FollowerCollection;
 use App\Models\User;
 use Error;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowerController extends Controller
 {
-    public function addFollower(FollowerRequest $request)
+    public function follow(FollowerRequest $request)
     {
         try {
             $user = User::where('id', $request->follower_id)->first();
@@ -28,6 +29,16 @@ class FollowerController extends Controller
             $user = User::where('id', Auth::user()->id)->first();
             $user->unfollow($request->followed_id);
             return response()->json(['message' => 'Haz dejado de seguir a este usuario'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
+    }
+
+    public function followers()
+    {
+        try {
+            $user = User::where('id', Auth::user()->id)->first();
+            return new FollowerCollection($user->followers);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
