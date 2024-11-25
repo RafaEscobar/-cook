@@ -3,10 +3,12 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostSavedController;
+use App\Http\Controllers\PostShareController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TopUserController;
-use App\Http\Controllers\UserActionsController;
 use App\Http\Controllers\UserController;
+use App\Http\Requests\Store\PostCommentRequest;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,10 +24,11 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/user/followers', 'followers');
         Route::get('/user/followed', 'usersFollowed');
     });
-    Route::controller(UserActionsController::class)->group(function(){
-        Route::post('/user/save-post', 'savePost');
-        Route::post('/user/delete-post', 'deletePost');
-    });
+    Route::post('/user/save-post', [PostSavedController::class, 'savePost']);
+    Route::post('/user/delete-post', [PostSavedController::class, 'deletePost']);
+    Route::post('/user/comment-post', [PostCommentRequest::class, 'commentPost']);
+    Route::post('/user/delete-comment', [PostCommentRequest::class, 'deleteComment']);
+    Route::post('/user/share-post', [PostShareController::class, 'sharePost']);
 });
 
 Route::controller(AuthController::class)->group(function(){

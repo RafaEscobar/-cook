@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Store\SavePostRequest;
-use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Store\PostActionRequest;
 
-class UserActionsController extends Controller
+class PostSavedController extends Controller
 {
-    public function savePost(SavePostRequest $request)
+    public function savePost(PostActionRequest $request)
     {
         try {
-            $post = Post::where('id', $request->post_id)->first();
+            $post = Post::where('id', )->first();
             if (!Auth::user()->isPostSaved($post)) {
                 Auth::user()->savePosts()->attach($request->post_id);
                 return response()->json(['message' => 'Post guardado!'], 200);
@@ -23,7 +21,7 @@ class UserActionsController extends Controller
         }
     }
 
-    public function deletePost(SavePostRequest $request)
+    public function deletePost(PostActionRequest $request)
     {
         try {
             Auth::user()->savePosts()->detach($request->post_id);
