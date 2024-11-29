@@ -21,7 +21,9 @@ class Post extends Model
 
     public function commentByUsers()
     {
-        return $this->belongsToMany(User::class, 'post_comments')->withTimestamps();
+        return $this->belongsToMany(User::class, 'post_comments', 'post_id', 'user_id')
+            ->withPivot('text')
+            ->withTimestamps();
     }
 
     public function savedByUsers()

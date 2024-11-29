@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostSavedController;
 use App\Http\Controllers\PostShareController;
@@ -25,7 +26,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/user/followed', 'usersFollowed');
     });
     Route::apiResource('/user/save-post', PostSavedController::class)->only(['store', 'destroy', 'index']);
-    Route::post('/user/comment-post', [PostCommentRequest::class, 'commentPost']);
+    Route::apiResource('/user/comment-post', PostCommentController::class)->only(['store', 'destroy', 'index']);
     Route::post('/user/delete-comment', [PostCommentRequest::class, 'deleteComment']);
     Route::post('/user/share-post', [PostShareController::class, 'sharePost']);
 });
