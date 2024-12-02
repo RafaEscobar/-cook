@@ -113,7 +113,7 @@ class User extends Authenticatable
 
     public function likePosts()
     {
-        return $this->belongsToMany(Post::class, 'post_share');
+        return $this->belongsToMany(Post::class, 'post_likes', 'user_id', 'post_id');
     }
 
     public function topUsers()
@@ -137,5 +137,10 @@ class User extends Authenticatable
     public function isPostShared($id)
     {
         return $this->sharePosts()->where('post_id', $id)->exists();
+    }
+
+    public function isPostLiked($id)
+    {
+        return $this->likePosts()->where('post_id', $id)->exists();
     }
 }
