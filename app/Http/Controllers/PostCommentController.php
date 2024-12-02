@@ -18,11 +18,7 @@ class PostCommentController extends Controller
                 $post = Post::with('commentByUsers')->findOrFail($request->post_id);
                 $comments = $post->commentByUsers->map(function($user){
                     return [
-                        "user" => [
-                            "id" => $user->id,
-                            "name" => "{$user->name} {$user->last_name}",
-                            "email" => $user->email
-                        ],
+                        "user" => $user,
                         "comment" => $user->pivot->text
                     ];
                 });
@@ -45,12 +41,16 @@ class PostCommentController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         try {
-            if (empty($request->comment_id)) throw new Error("El id del comentario es obligatorio.");
-            Auth::user()->commentPosts()->wherePivot('id', $request->comment_id)->detach();
-            return response()->json(["message" => "Comentario eliminado"]);
+            if (empty($id)) throw new Error("El id del comentario es obligatorio.");
+            $status = Auth::user()->commentPosts()->wherePivot('id', $id)->detach();
+            if ($status) {
+                return response()->json(["message" => "Comentario eliminado"]);
+            } else {
+                return response()->json(["message" => "Error al eliminar el comentario."], 404);
+            }
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }

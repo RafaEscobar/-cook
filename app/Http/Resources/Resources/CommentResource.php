@@ -16,9 +16,9 @@ class CommentResource extends JsonResource
     {
         return [
             "user" => [
-                "id" => $this['user']['id'],
-                "name" => $this['user']['name'],
-                "email" => $this['user']['email']
+                "id" => $this['user']->id,
+                "name" => "{$this['user']->name} {$this['user']->last_name}",
+                "email" => $this['user']->email
             ],
             "comment" => $this['comment']
         ];
