@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\PostSavedController;
 use App\Http\Controllers\PostShareController;
 use App\Http\Controllers\RecipeController;
@@ -28,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/user/save-post', PostSavedController::class)->only(['store', 'destroy', 'index']);
     Route::apiResource('/user/comment-post', PostCommentController::class)->only(['store', 'destroy', 'index']);
     Route::apiResource('user/share-post', PostShareController::class)->only(['store', 'destroy']);
+    Route::apiResource('users/like-post', PostLikeController::class)->only(['store', 'show', 'destroy']);
 });
 
 Route::controller(AuthController::class)->group(function(){
