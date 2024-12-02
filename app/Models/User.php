@@ -96,7 +96,7 @@ class User extends Authenticatable
 
     public function sharePosts()
     {
-        return $this->belongsToMany(Post::class, 'post_shares');
+        return $this->belongsToMany(Post::class, 'post_shares', 'user_id', 'post_id');
     }
 
     public function commentPosts()
@@ -146,5 +146,10 @@ class User extends Authenticatable
     public function isPostSaved(Post $post)
     {
         return $this->savePosts()->where('post_id', $post->id)->exists();
+    }
+
+    public function isPostShared(Post $post)
+    {
+        return $this->sharePosts()->where('post_id', $post->id)->exists();
     }
 }
