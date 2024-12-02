@@ -143,11 +143,13 @@ class User extends Authenticatable
         $this->followedUsers()->detach($userToUnfollow);
     }
 
-    public function isPostSaved(Post $post)
+    //* Este usuario ya guardo el post
+    public function isPostSaved($id)
     {
-        return $this->savePosts()->where('post_id', $post->id)->exists();
+        return $this->savePosts()->where('post_id', $id)->exists();
     }
 
+    //* Este usuario ya compartio el post
     public function isPostShared(Post $post)
     {
         return $this->sharePosts()->where('post_id', $post->id)->exists();

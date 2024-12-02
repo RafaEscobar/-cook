@@ -44,13 +44,9 @@ class PostCommentController extends Controller
     public function destroy($id)
     {
         try {
-            if (empty($id)) throw new Error("El id del comentario es obligatorio.");
-            $status = Auth::user()->commentPosts()->wherePivot('id', $id)->detach();
-            if ($status) {
-                return response()->json(["message" => "Comentario eliminado"]);
-            } else {
-                return response()->json(["message" => "Error al eliminar el comentario."], 404);
-            }
+            $user = Auth::user();
+            $isDetach = $user->commentPosts()->wherePivot('id', $id)->detach();
+            return ($status) ? response()->json(["message" => "Comentario eliminado"], 200) : response()->json(["message" => "Error al eliminar el comentario."], 404);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }

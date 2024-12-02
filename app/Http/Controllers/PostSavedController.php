@@ -22,13 +22,10 @@ class PostSavedController extends Controller
     public function store(PostActionRequest $request)
     {
         try {
-            $post = Post::where('id', $request->post_id)->first();
-            if (!Auth::user()->isPostSaved($post)) {
-                Auth::user()->savePosts()->attach($request->post_id);
-                return response()->json(['message' => 'Post guardado!'], 200);
-            } else {
-                return response()->json(["message" => "Ya guardaste este post previamente."], 409);
-            }
+            $user = Auth::user();
+            if ($user->isPostSaved($request->post_id)) return response()->json(["message" => "Ya guardaste este post previamente."], 409);
+            $user->savePosts()->attach($request->post_id);
+            return response()->json(['message' => 'Post guardado!'], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
@@ -37,7 +34,9 @@ class PostSavedController extends Controller
     public function destroy($post_id)
     {
         try {
-            Auth::user()->savePosts()->detach($post_id);
+            $user = Auth::user();
+            if (!$user->isPostSaved) return response()->json(['message' => "Aun no has guardado este post."], 409);
+            $user->savePosts()->detach($post_id);
             return response()->json(["message" => "Post eliminado de guardados"], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
