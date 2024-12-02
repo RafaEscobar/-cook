@@ -121,35 +121,19 @@ class User extends Authenticatable
         return $this->hasMany(TopUser::class);
     }
 
-    //* Metodo para seguir a otro usuario
-    public function follow($id)
+    //* Determina sí este usuario ya sigue al usuario dado
+    public function isFollowing($id)
     {
-        $userToFollow = User::where('id', $id)->first();
-        if ($userToFollow->id == $this->id) throw new Error("No pudes seguir a este usuario");
-        if ($this->isFollowing($userToFollow)) throw new Error("Ya sigues a este usuario");
-        $this->followedUsers()->attach($userToFollow->id);
+        return $this->followedUsers()->where('followed_id', $id)->exists();
     }
 
-    //* Metodo para saber si un usuario es seguido
-    public function isFollowing(User $user)
-    {
-        return $this->followedUsers()->where('followed_id', $user->id)->exists();
-    }
-
-    public function unfollow($id)
-    {
-        $userToUnfollow = User::where('id', $id)->first();
-        if (!$this->isFollowing($userToUnfollow)) throw new Error('No sigues a este usuario');
-        $this->followedUsers()->detach($userToUnfollow);
-    }
-
-    //* Este usuario ya guardo el post
+    //* Determina sí este usuario ya guardo el post
     public function isPostSaved($id)
     {
         return $this->savePosts()->where('post_id', $id)->exists();
     }
 
-    //* Este usuario ya compartio el post
+    //* Determina sí este usuario ya compartio el post
     public function isPostShared($id)
     {
         return $this->sharePosts()->where('post_id', $id)->exists();

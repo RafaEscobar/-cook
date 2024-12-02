@@ -22,7 +22,6 @@ class FollowerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'follower_id' => 'required|integer',
             'followed_id' => 'required|integer'
         ];
     }
@@ -30,8 +29,6 @@ class FollowerRequest extends FormRequest
     public function messages()
     {
         return [
-            'follower_id.required' => 'El seguidor es obligatorio.',
-            'follower_id.integer' => 'El formato del seguidor es incorrecto.',
             'followed_id.required' => 'El usuario seguido es obligatorio.',
             'followed_id.integer' => 'El formato del usuario seguido es incorrecto.'
         ];
