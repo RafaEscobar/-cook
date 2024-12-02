@@ -150,8 +150,8 @@ class User extends Authenticatable
     }
 
     //* Este usuario ya compartio el post
-    public function isPostShared(Post $post)
+    public function isPostShared($id)
     {
-        return $this->sharePosts()->where('post_id', $post->id)->exists();
+        return $this->sharePosts()->where('post_id', $id)->exists();
     }
 }

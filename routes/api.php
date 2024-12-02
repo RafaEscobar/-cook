@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function(){
     });
     Route::apiResource('/user/save-post', PostSavedController::class)->only(['store', 'destroy', 'index']);
     Route::apiResource('/user/comment-post', PostCommentController::class)->only(['store', 'destroy', 'index']);
-    Route::apiResource('user/share-post', PostShareController::class)->only(['store', 'show', 'destroy']);
+    Route::apiResource('user/share-post', PostShareController::class)->only(['store', 'destroy']);
 });
 
 Route::controller(AuthController::class)->group(function(){

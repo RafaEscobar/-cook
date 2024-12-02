@@ -46,7 +46,7 @@ class PostCommentController extends Controller
         try {
             $user = Auth::user();
             $isDetach = $user->commentPosts()->wherePivot('id', $id)->detach();
-            return ($status) ? response()->json(["message" => "Comentario eliminado"], 200) : response()->json(["message" => "Error al eliminar el comentario."], 404);
+            return ($isDetach) ? response()->json(["message" => "Comentario eliminado"], 200) : response()->json(["message" => "Error al eliminar el comentario."], 404);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
