@@ -150,4 +150,10 @@ class User extends Authenticatable
     {
         return $this->saveRecipes()->where('recipe_id', $id)->exists();
     }
+
+    //* Determina sí este usuario ya compartio esta receta
+    public function isRecipeShared($id)
+    {
+        return $this->shareRecipes()->where('recipe_id', $id)->exists();
+    }
 }
