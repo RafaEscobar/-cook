@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Posts;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\PostCategoryStoreRequest;
 use App\Http\Resources\Collections\PostCategoryCollection;
 use App\Http\Resources\Resources\PostCategoryResource;

@@ -2,16 +2,15 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FollowerController;
-use App\Http\Controllers\PostCategoryController;
-use App\Http\Controllers\PostCommentController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\PostLikeController;
-use App\Http\Controllers\PostSavedController;
-use App\Http\Controllers\PostShareController;
+use App\Http\Controllers\Posts\PostCategoryController;
+use App\Http\Controllers\Posts\PostCommentController;
+use App\Http\Controllers\Posts\PostController;
+use App\Http\Controllers\Posts\PostLikeController;
+use App\Http\Controllers\Posts\PostSaveController;
+use App\Http\Controllers\Posts\PostShareController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TopUserController;
 use App\Http\Controllers\UserController;
-use App\Http\Requests\Store\PostCommentRequest;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,7 +26,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/user/followers', 'followers');
         Route::get('/user/followed', 'usersFollowed');
     });
-    Route::apiResource('/user/save-post', PostSavedController::class)->only(['store', 'destroy', 'index']);
+    Route::apiResource('/user/save-post', PostSaveController::class)->only(['store', 'destroy', 'index']);
     Route::apiResource('/user/comment-post', PostCommentController::class)->only(['store', 'destroy', 'index']);
     Route::apiResource('user/share-post', PostShareController::class)->only(['store', 'destroy']);
     Route::apiResource('/user/like-post', PostLikeController::class)->only(['store', 'destroy']);

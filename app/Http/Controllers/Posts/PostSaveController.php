@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Posts;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\PostActionRequest;
 use App\Http\Resources\Collections\PostSavedCollection;
-use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
-class PostSavedController extends Controller
+class PostSaveController extends Controller
 {
     public function index()
     {

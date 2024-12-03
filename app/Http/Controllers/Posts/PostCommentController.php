@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Posts;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\PostCommentRequest;
 use App\Http\Resources\Collections\CommentCollection;
 use App\Models\Post;
-use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

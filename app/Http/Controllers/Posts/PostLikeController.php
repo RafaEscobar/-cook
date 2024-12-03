@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Posts;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\PostActionRequest;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class PostLikeController extends Controller
 {
