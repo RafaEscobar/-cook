@@ -91,7 +91,7 @@ class User extends Authenticatable
 
     public function saveRecipes()
     {
-        return $this->belongsToMany(Recipe::class, 'recipe_saves');
+        return $this->belongsToMany(Recipe::class, 'recipe_save', 'user_id', 'recipe_id');
     }
 
     public function sharePosts()
@@ -139,8 +139,15 @@ class User extends Authenticatable
         return $this->sharePosts()->where('post_id', $id)->exists();
     }
 
+    //* Determina sí este usuario ya le dio like a este post
     public function isPostLiked($id)
     {
         return $this->likePosts()->where('post_id', $id)->exists();
+    }
+
+    //* Determina sí este usuario ya guardo la receta
+    public function isRecipeSaved($id)
+    {
+        return $this->saveRecipes()->where('recipe_id', $id)->exists();
     }
 }
