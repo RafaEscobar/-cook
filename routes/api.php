@@ -10,6 +10,7 @@ use App\Http\Controllers\Posts\PostSaveController;
 use App\Http\Controllers\Posts\PostShareController;
 use App\Http\Controllers\Recipes\RecipeController;
 use App\Http\Controllers\Recipes\RecipeSaveController;
+use App\Http\Controllers\Recipes\RecipeShareController;
 use App\Http\Controllers\TopUserController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('user/share-post', PostShareController::class)->only(['store', 'destroy']);
     Route::apiResource('/user/like-post', PostLikeController::class)->only(['store', 'destroy']);
     Route::apiResource('/post-category', PostCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-    Route::apiResource('/user/save-recipe', RecipeSaveController::class);
+    Route::apiResource('/user/save-recipe', RecipeSaveController::class)->only(['index', 'store', 'destroy']);
+    Route::apiResource('user/share-recipe', RecipeShareController::class)->only(['index', 'store', 'destroy']);
 });
 
 Route::controller(AuthController::class)->group(function(){

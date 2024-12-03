@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources\Collections;
 
-use App\Http\Resources\Resources\RecipeSaveResource;
+use App\Http\Resources\Resources\RecipeActionsResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class RecipeSaveCollection extends ResourceCollection
+class RecipeActionsCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -16,7 +16,7 @@ class RecipeSaveCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            "data" => RecipeSaveResource::collection($this->collection),
+            "data" => RecipeActionsResource::collection($this->collection),
             "meta" => [
                 "total" => $this->collection->count()
             ]

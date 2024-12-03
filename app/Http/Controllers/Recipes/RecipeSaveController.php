@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Recipes;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Store\RecipeSaveStoreRequest;
+use App\Http\Requests\Store\RecipeActionsRequest;
 use App\Http\Resources\Collections\RecipeSaveCollection;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +19,7 @@ class RecipeSaveController extends Controller
         }
     }
 
-    public function store(RecipeSaveStoreRequest $request)
+    public function store(RecipeActionsRequest $request)
     {
         try {
             $user = Auth::user();

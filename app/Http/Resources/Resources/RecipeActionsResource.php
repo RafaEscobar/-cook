@@ -5,7 +5,7 @@ namespace App\Http\Resources\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RecipeSaveResource extends JsonResource
+class RecipeActionsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
