@@ -26,7 +26,7 @@ class PostShareController extends Controller
             $user = Auth::user();
             if (!$user->isPostShared($id)) return response()->json(['message' => "Aún no has compartido este post."], 409);
             Auth::user()->sharePosts()->detach($id);
-            return response("Ya no compartes este post.", 200);
+            return response()->json(["message" => "Ya no compartes este post."], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }

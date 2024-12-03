@@ -14,6 +14,6 @@ class RecipeActionsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return ["recipe_id" => $this->recipe_id];
+        return ["recipe_id" => $this->id];
     }
 }

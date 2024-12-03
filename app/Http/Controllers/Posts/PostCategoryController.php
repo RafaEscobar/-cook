@@ -44,9 +44,9 @@ class PostCategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $category = PostCategory::findOrFail($id);
-            $category->delete();
-            return response()->json(["message" => "Categoría de post eliminada."], 200);
+            return (PostCategory::destroy($id)) ?
+                response()->json(["message" => "Categoría de post eliminada."], 200) :
+                response()->json(["message" => "Categoría no encontrada."], 404);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
