@@ -25,7 +25,7 @@ class RecipeShareController extends Controller
             $user = Auth::user();
             if ($user->isRecipeShared($request->recipe_id)) return response()->json(["message" => "Ya has compartido esta receta."], 409);
             $user->shareRecipes()->attach($request->recipe_id);
-            return response()->json(["message" => "Has compartido esta publicación."], 200);
+            return response()->json(["message" => "Has compartido esta receta."], 200);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
