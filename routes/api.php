@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\Posts\PostCategoryController;
 use App\Http\Controllers\Posts\PostCommentController;
 use App\Http\Controllers\Posts\PostController;
@@ -39,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/user/save-recipe', RecipeSaveController::class)->only(['index', 'store', 'destroy']);
     Route::apiResource('user/share-recipe', RecipeShareController::class)->only(['index', 'store', 'destroy']);
     Route::apiResource('/recipe-category', RecipeCategoryController::class);
+    Route::apiResource('/ingredients', IngredientController::class);
 });
 
 Route::controller(AuthController::class)->group(function(){
